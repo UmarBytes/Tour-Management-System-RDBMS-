@@ -1,0 +1,46 @@
+CREATE TABLE Tourist(
+	TouristID int PRIMARY KEY,
+	T_name varchar(30),
+	Email varchar(40),
+	Password int(8)
+);
+
+
+CREATE TABLE Hotel(
+	HotelID int PRIMARY KEY,
+	HotelName varchar(30),
+	HotelAddress varchar(100),
+	HotelPrice int
+);
+
+CREATE TABLE Restaurant(
+	RestaurantID int PRIMARY KEY,
+	RestaurantName varchar(30),
+	RestaurantAddress varchar(100),
+	RestaurantPrice int
+);
+
+CREATE TABLE Destination(
+	DestinationID int PRIMARY KEY,
+	DestinationName varchar(50)
+);
+
+CREATE TABLE Transport_Medium(
+TransportMediumID int PRIMARY KEY,
+TransportMediumName varchar(50),
+TransportMediumPrice int,
+DestinationID int,
+FOREIGN KEY(DestinationID) REFERENCES Destination(DestinationID)
+);
+
+CREATE TABLE Plan(
+	PlanID int PRIMARY KEY,
+    DestinationID int,
+    FOREIGN KEY(DestinationID) REFERENCES Destination(DestinationID),
+	HotelID int,
+    FOREIGN KEY(HotelID) REFERENCES hotel(HotelID),
+	RestaurantID int,
+    FOREIGN KEY(RestaurantID) REFERENCES restaurant(RestaurantID),
+	TransportMediumID int,
+    FOREIGN KEY(TransportMediumID) REFERENCES Transport_Medium(TransportMediumID)
+);
